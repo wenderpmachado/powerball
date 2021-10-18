@@ -1,4 +1,5 @@
-const expressApp = require('./app/app')
+import expressApp from './app'
+
 const port = process.env.PORT || 3000
 
 process.on('unhandledRejection', error => {
