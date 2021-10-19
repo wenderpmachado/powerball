@@ -1,6 +1,9 @@
-import expressApp from './app'
+import 'reflect-metadata'
+import './config/module-alias'
+import { env } from '@/config/env'
+import expressApp from '@/app'
 
-const port = process.env.PORT || 3000
+const port = env.PORT;
 
 process.on('unhandledRejection', error => {
   console.error(error)

@@ -1,8 +1,12 @@
-import { Request, Response } from 'express'
+import { Controller, Get, JsonController } from 'routing-controllers';
+import * as packageJson from '@/../package.json'
 
-// Hello World on '/'
-function root(req: Request, res: Response): void {
-  res.json({ message: 'Hello World' })
+@JsonController()
+class RootController {
+  @Get('/')
+  root() {
+    return { 'api-version': packageJson.version };
+  }
 }
 
-export default root
+export default RootController
