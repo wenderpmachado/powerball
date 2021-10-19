@@ -1,5 +1,5 @@
-import { Controller, Get, JsonController } from 'routing-controllers';
-import * as packageJson from '@/../package.json'
+import * as packageJson from '@/../package.json';
+import { Get, JsonController } from 'routing-controllers';
 
 @JsonController()
 class RootController {

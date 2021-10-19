@@ -1,9 +1,3 @@
-# Roadmap
-
-* [ ] Add Swagger
-* [ ] Add Caching
-* [ ] Add Logging
-
 # Interview Exercise
 
 Your goal is to extend the functionality of this Node.js service.
@@ -14,7 +8,7 @@ For example, a pick for the draw on `2017-11-09` might be:
 
 `02 14 19 21 61` `25`
 
-Your application's API will accept data for a lottery ticket, and respond with whether each pick has won, the prize won per-pick, and the total of all prizes won on the ticket. It is up to you to design and build this API.
+The API will accept data for a lottery ticket, and respond with whether each pick has won, the prize won per-pick, and the total of all prizes won on the ticket. It is up to you to design and build this API.
 
 The Powerball winning numbers change on each "draw date". In order to determine a win or a loss, your application will have to retrieve the Powerball draw dates and winning numbers from the following public URL:
 
@@ -22,7 +16,7 @@ The Powerball winning numbers change on each "draw date". In order to determine 
 
 To calculate the prize, consult the prize matrix image below:
 
-![Powerball Rules](powerball_rules.png?raw=true)
+![Powerball Rules](.github/images/powerball_rules.png?raw=true)
 
 ## Installation
 
@@ -58,28 +52,159 @@ You can then hit the default endpoint:
 
 `http://localhost:3000/`
 
+To shutdown the server simply send a `^C`.
+
+## The API
+
+Currently the API have three endpoints:
+
+### GET /
+
 You should see something like this:
 
 ```json
 {
-  "messsage": "Hello World"
+  "api-version": "0.1.0"
 }
 ```
 
-To shutdown the server simply send a `^C`.
+### GET /powerball/game?date=2021-10-13
+
+Possible responses:
+
+#### Success response
+
+```json
+{
+  "draw_date": "2021-10-13T00:00:00.000",
+  "winning_numbers": "23 29 47 59 60 15",
+  "multiplier": "2"
+}
+```
+
+#### With Game Error (not game found)
+
+```json
+{
+  "hasError": true,
+  "message": "No game in this date"
+}
+
+### POST /powerball/game/check
+
+Body structure:
+
+#### Game found
+
+```json
+{
+  "date": "2021-10-13",
+  "picks": [
+    "23 29 47 59 60 26"
+  ]
+}
+```
+
+> Tip: It is possible to pass more than one pick
+
+Possible responses:
+
+#### The winner
+
+```json
+{
+  "prizes": [
+    {
+      "pick": "23 29 47 59 60 15",
+      "isGrandPrize": true,
+      "prize": 0
+    }
+  ],
+  "totalPrize": "Grand Prize"
+}
+```
+
+#### Very lucky
+
+```json
+{
+  "prizes": [
+    {
+      "pick": "23 29 47 59 60 26",
+      "isGrandPrize": false,
+      "prize": 1000000
+    },
+    {
+      "pick": "23 29 47 59 60 14",
+      "isGrandPrize": false,
+      "prize": 1000000
+    },
+    {
+      "pick": "21 28 46 58 61 15",
+      "isGrandPrize": false,
+      "prize": 4
+    }
+  ],
+  "totalPrize": 2000004
+}
+```
+
+#### With Pick Error
+
+```json
+{
+  "hasError": true,
+  "message": "Pick '23 29 47 59 60 27' is not valid"
+}
+```
+
+#### With Game Error (not game found)
+
+```json
+{
+  "hasError": true,
+  "message": "No game in this date"
+}
+```
+
+> TIP: It was generated a [Postman file](./docs/NeoFinancial.postman_collection.json)
 
 ## Testing
 
-To run the existing (sample) tests simply use:
+To run the tests, the project have 3 scripts:
 
-`npm test`
+```bash
+# run once
+npm run test
+
+# run once and keep watching file changes
+npm run test:watch
+
+# run once and generates coverage
+npm run test:coverage
+```
 
 You should see output like this:
 
 ```txt
- Test Suites: 3 passed, 3 total
- Tests:       5 passed, 5 total
- Snapshots:   0 total
- Time:        2.585s
- Ran all test suites.
+Test Suites: 13 passed, 13 total
+Tests:       50 passed, 50 total
+Snapshots:   0 total
+Time:        38.961 s
+Ran all test suites.
 ```
+
+> Tip: Open the file `./coverage/lcov-report/index.html` to see the coverage in a better way
+
+![Coverage](.github/images/coverage.JPG)
+
+# Roadmap
+
+Due to time constraints, some implementations were planned for future releases.
+
+* [ ] Finish Swagger implementation
+* [ ] Add Caching in the `GET /powerball/game` route
+* [ ] Add Logging
+* [ ] Add Simples frontend application to consume the API
+* [ ] Increase test cases
+* [ ] Create `Dockerfile` and minimal DevOps struture

@@ -1,8 +1,8 @@
-import { isEmpty } from 'lodash';
-import { BodyParam, Get, JsonController, Param, Post, QueryParam } from 'routing-controllers';
+import { LoadGameInfo } from '@/gateways/contracts';
 import PowerballService, { IPickResults, IPowerballService } from '@/services/powerball';
 import { isSequencyValid } from '@/utils/is-sequency-valid';
-import { LoadGameInfo } from '@/gateways/contracts';
+import { isEmpty } from 'lodash';
+import { BodyParam, Get, JsonController, Post, QueryParam } from 'routing-controllers';
 
 export interface IErrorResponse {
   hasError: boolean;
