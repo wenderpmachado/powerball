@@ -63,6 +63,21 @@ You can then hit the default endpoint:
 
 To shutdown the server simply send a `^C`.
 
+## Folder structure
+
+```txt
+> test         # all test cases
+> docs         # files docs like
+> dist         # transpiled files (used in prod)
+> coverage     # coverage generated
+> app          # the source
+|_ config      # files to setup before start
+|_ controllers # controller layer with routes
+|_ gateways    # communication with external services
+|_ services    # API services, that controller communicates
+|_ utils       # helping/pure functions
+```
+
 ## The API
 
 Currently the API have three endpoints:
