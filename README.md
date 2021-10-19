@@ -1,3 +1,9 @@
+# Roadmap
+
+* [ ] Add Swagger
+* [ ] Add Caching
+* [ ] Add Logging
+
 # Interview Exercise
 
 Your goal is to extend the functionality of this Node.js service.
@@ -17,16 +23,6 @@ The Powerball winning numbers change on each "draw date". In order to determine 
 To calculate the prize, consult the prize matrix image below:
 
 ![Powerball Rules](powerball_rules.png?raw=true)
-
-## Exercise Rules
-
-- There is no time limit to this challenge.
-- Use your best discretion with the design and requirements, but you can ask questions.
-- You must use JavaScript and must extend this code base.
-- There is no need for a UI to solve this problem.
-- Follow modern JavaScript and Node best practices and conventions to the best of your ability.
-- You are free to add packages, tools or improvements to your project as you see fit.
-- We expect you to write the kind of feature you would put into production, including tests and documentation as you see fit.
 
 ## Installation
 
@@ -87,11 +83,3 @@ You should see output like this:
  Time:        2.585s
  Ran all test suites.
 ```
-
-## Submission
-
-Make your changes and then create a zip file to send back to us. Make sure you don't include `node_modules` in the zip file. Send your solution back to the person who emailed you the original problem.
-
-## Contact
-
-We encourage you to use your best discretion, but also to ask questions and communicate if you need it.

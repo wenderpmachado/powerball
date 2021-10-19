@@ -1,3 +1,4 @@
+import { GRAND_PRIZE } from '@/constants';
 import { DataNyAPI } from '@/gateways';
 import { LoadGameInfo } from '@/gateways/contracts';
 import { makeDataNyAPI } from '@/gateways/factories/data-ny-api'
@@ -18,7 +19,7 @@ class PowerballService implements IPowerballService {
   // TODO: Add dependency injection
   constructor(private readonly dataNyAPI: DataNyAPI = makeDataNyAPI()) {}
 
-  async getGameByDate(date: string) {
+  async getGameByDate(date: string): Promise<LoadGameInfo.Output> {
     const result = await this.dataNyAPI.loadResult({ date });
 
     if (!result) {
@@ -42,7 +43,7 @@ class PowerballService implements IPowerballService {
 
     return {
       prizes,
-      totalPrize: hasGrandPrize ? 'Grand Prize' : sumPrizes(prizes)
+      totalPrize: hasGrandPrize ? GRAND_PRIZE : sumPrizes(prizes)
     };
   }
 }
