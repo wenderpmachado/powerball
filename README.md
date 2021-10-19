@@ -98,6 +98,7 @@ Possible responses:
   "hasError": true,
   "message": "No game in this date"
 }
+```
 
 ### POST /powerball/game/check
 
