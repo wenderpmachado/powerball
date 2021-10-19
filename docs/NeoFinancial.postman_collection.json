@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "72ad50c8-91cf-4f29-95ed-4937ab182ba7",
+		"name": "NeoFinancial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check picks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2021-10-13\",\r\n    \"picks\": [\r\n        \"23 29 47 59 60 26\",\r\n        \"23 29 47 59 60 14\",\r\n        \"21 28 46 58 61 15\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/powerball/game/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"powerball",
+						"game",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get game by Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/powerball/game?date=2021-10-13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"powerball",
+						"game"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2021-10-13"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
