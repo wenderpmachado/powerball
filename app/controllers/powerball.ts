@@ -1,8 +1,8 @@
-import { isEmpty } from 'lodash';
-import { BodyParam, Get, JsonController, Param, Post, QueryParam } from 'routing-controllers';
+import { LoadGameInfo } from '@/gateways/contracts';
 import PowerballService, { IPickResults, IPowerballService } from '@/services/powerball';
 import { isSequencyValid } from '@/utils/is-sequency-valid';
-import { LoadGameInfo } from '@/gateways/contracts';
+import { isEmpty } from 'lodash';
+import { BodyParam, Get, JsonController, Post, QueryParam } from 'routing-controllers';
 
 export interface IErrorResponse {
   hasError: boolean;
@@ -17,7 +17,9 @@ class PowerballController {
   constructor(private readonly service: IPowerballService = new PowerballService()) {}
 
   @Get('/game')
-  async getGameByDate(@QueryParam('date') date: string): Promise<TResponse<LoadGameInfo.Output>> {
+  async getGameByDate(
+    @QueryParam('date') date: string
+  ): Promise<TResponse<LoadGameInfo.Output>> {
     try {
       if (isEmpty(date)) {
         throw new Error('Date not informed');
